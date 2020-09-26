@@ -27,7 +27,7 @@ class DetailsViewController: UIViewController {
             image.load(url: URL(string: article.urlToImage!)!)
             date.text = "Date: " + (article.publishedAt?.description ?? "Soon...")
             publishedAt.text = "Author: " + (article.author ?? "Unkown")
-            desc.text = article.articleDescription ?? "More..."
+            desc.text = article.description ?? "More..."
             desc.sizeToFit()
             articleContent.text = article.content ?? "No information available now"
             articleContent.sizeToFit()

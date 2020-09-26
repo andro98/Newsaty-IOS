@@ -59,22 +59,9 @@ class ViewController: UITableViewController, RequestHandler {
         titleText?.text  = articles[indexPath.row].title!
         titleText?.sizeToFit()
         let descText = cell.viewWithTag(1002) as? UILabel
-        descText?.text = articles[indexPath.row].articleDescription ?? "more..."
+        descText?.text = articles[indexPath.row].description ?? "more..."
         return cell
     }
 }
 
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
-    }
-}
 

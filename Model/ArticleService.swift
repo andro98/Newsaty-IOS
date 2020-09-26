@@ -12,7 +12,6 @@ protocol RequestHandler{
     func requestSuccessed(data: Any)
 }
 
-
 class ArticleService{
     func getAllArticles(rh: RequestHandler){
         let session = URLSession.shared
@@ -34,7 +33,6 @@ class ArticleService{
                 if let data = data{
                     var articles = [Article]()
                     let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String : AnyObject]
-                    //print(json)
                     let articlesFromJson = json["articles"] as! [[String: AnyObject]]
                     for articleFromJson in articlesFromJson{
                         let author:String? = articleFromJson["author"] as? String
@@ -43,7 +41,7 @@ class ArticleService{
                         let urlToImage:String? = articleFromJson["urlToImage"]as? String
                         let publishedAt:Date? = articleFromJson["publishedAt"]as? Date
                         let content:String? = articleFromJson["content"]as? String
-                        let article = Article(author: author, title: title, articleDescription: description, urlToImage: urlToImage, publishedAt: publishedAt, content: content)
+                        let article = Article(author: author, title: title, description: description, urlToImage: urlToImage, publishedAt: publishedAt, content: content)
                         articles.append(article)
                         
                     }
@@ -52,7 +50,7 @@ class ArticleService{
             }catch{
                 
             }
-
+            
         }
         task.resume()
     }
